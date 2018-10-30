@@ -59,7 +59,8 @@ exports.getRmqSettings = function () {
             adminOut : 'admin_out_q'
         },
         exchanges : {
-            data : 'data.dx'
+            data : 'data.dx',
+            actuation : 'actuation.dx'
         },
         routingKeys : {
             raw : 'raw',

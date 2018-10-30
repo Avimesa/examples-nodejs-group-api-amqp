@@ -23,8 +23,8 @@ function queueSubscriber(){
     const connParams = config.getConnParams();
 
     // We're going to purge a device's queue (its actuation queue)
-    var deviceId = "00000000000000000000000000000000";
-    var queueName = `${deviceId}_q`;
+    const deviceId = "00000000000000000000000000000000";
+    const queueName = `${deviceId}_q`;
 
     console.log(`Using Device ID: ${deviceId}`);
 

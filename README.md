@@ -12,6 +12,7 @@ This project contains simple example of how to interface with the Avimesa Device
 - [2. Prerequisites](#2.-prerequisites)
 - [3. Usage](#3.-usage)
 - [4. Examples](#4.-examples)
+    - [actuate-device](#actuate-device)
     - [queue-purge](#queue-purge)
     - [queue-read-all](#queue-read-all)
     - [queue-subscriber](#queue-subscriber)
@@ -69,6 +70,18 @@ node queue-subscriber/index.js
 ## 4. Examples
 
 
+<a id="actuate-device"></a>
+### actuate-device
+
+##### Summary:
+
+Device actuation occurs by sending a command to the Device.  Because the device may be offline, a queue for the Device is available to cache the message.  The Device's queue is automatically configured by the Avimesa Device Cloud upon addition of the Device to the Group. 
+
+To actuate a device, we send a JSON command to the `actuation.dx` exchange, and use a routing key that is the Device's ID (lower case, string based UUID, no hyphens).
+
+
+
+[Top](#toc)<br>
 <a id="queue-purge"></a>
 ### queue-purge
 
@@ -89,6 +102,7 @@ This example shows how to purge a queue.
 The Avimesa Device Cloud comes with pre-configured queues such as `raw_q`, `not_q`, `admin_out_q` and `sys_log_q`.  These are required to serve as a (temporary) data store for messages and events.  Each queue is setup as exclusive, with the intention of a **single main consumer** that offloads the messages from the broker, into a database for permanent storage, and acknowledges the message to remove it from the queue.
 
 This example shows a simple synchronous use case of the primary use of these queues, which is to have a single consumer offloading a queue exclusively.
+
 
 
 [Top](#toc)<br>
