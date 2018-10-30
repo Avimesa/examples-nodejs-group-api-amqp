@@ -10,11 +10,22 @@
 'use strict';
 
 const env = require('dotenv');
+const path = require('path');
 
 // Load environment variables
 env.config();
 
+// if .env not found, try the parent directory...
+if (!process.env.RMQ_HOSTNAME) {
+    var parent = path.resolve(process.cwd(), '..') + "/.env";
+    var options = {
+        path : parent
+    };
+    env.config(options);
+}
+
 exports.getConnParams = function () {
+
     // Use environment variables for the connection paramaters for AMQP
     const connParams = {
         protocol: 'amqps',
@@ -40,11 +51,12 @@ exports.getConnParams = function () {
 };
 
 exports.getRmqSettings = function () {
-    const rmqSettings = {
+    return {
         queues: {
             raw : 'raw_q',
             notification : 'not_q',
-            syslog : 'sys_loq_q'
+            syslog : 'sys_log_q',
+            adminOut : 'admin_out_q'
         },
         exchanges : {
             data : 'data.dx'
@@ -54,6 +66,4 @@ exports.getRmqSettings = function () {
             notification : 'not',
         }
     };
-
-    return rmqSettings;
 };

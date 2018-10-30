@@ -42,7 +42,7 @@ function queueSubscriber(){
                 else{
                     ch.purgeQueue(queueName, function (err, resp) {
                         if (err){
-                            console.log(err);
+                            console.log(err.message);
                         }
                         else {
                             console.log('purged ${resp.messageCount} messages');

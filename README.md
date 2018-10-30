@@ -61,8 +61,7 @@ NODE_TLS_REJECT_UNAUTHORIZED=0
 Run the example from its directory, for example to run the `queue-subscriber` example, do ths following from the root of the project:
 
 ```
-cd queue-subscriber
-node index.js
+node queue-subscriber/index.js
 ```
 
 [Top](#toc)<br>

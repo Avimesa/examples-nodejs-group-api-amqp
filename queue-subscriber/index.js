@@ -36,13 +36,13 @@ function queueSubscriber(){
         else{
             conn.createChannel(function(err, ch) {
                 if (err){
-                    console.log(err);
+                    console.log(err.message);
                     conn.close();
                 }
                 else{
                     ch.assertQueue(queueName, {exclusive : true}, function(err, q) {
                         if(err){
-                            console.log(err);
+                            console.log(err.message);
                             conn.close();
                         }
                         else {

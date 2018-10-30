@@ -29,12 +29,12 @@ function queueTemporarySubscriber(){
      // Connect to the server
     amqp.connect(connParams, function(err, conn) {
         if (err){
-            console.log(err);
+            console.log(err.message);
         }
         else{
             conn.createChannel(function(err, ch) {
                 if (err){
-                    console.log(err);
+                    console.log(err.message);
                     conn.close();
                 }
                 else{
@@ -45,7 +45,7 @@ function queueTemporarySubscriber(){
                     ch.assertQueue('', {exclusive : true}, function(err, q) {
 
                         if(err){
-                            console.log(err);
+                            console.log(err.message);
                         }
                         else {
                             // Setup a route for this queue
