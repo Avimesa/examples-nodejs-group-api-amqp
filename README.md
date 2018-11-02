@@ -13,6 +13,7 @@ This project contains simple example of how to interface with the Avimesa Device
 - [3. Usage](#3.-usage)
 - [4. Examples](#4.-examples)
     - [actuate-device](#actuate-device)
+    - [message-count](#message-count)
     - [queue-purge](#queue-purge)
     - [queue-read-all](#queue-read-all)
     - [queue-subscriber](#queue-subscriber)
@@ -79,6 +80,15 @@ Device actuation occurs by sending a command to the Device.  Because the device 
 
 To actuate a device, we send a JSON command to the `actuation.dx` exchange, and use a routing key that is the Device's ID (lower case, string based UUID, no hyphens).
 
+
+
+
+<a id="message-count"></a>
+### message-count
+
+##### Summary:
+
+Sometimes you want to see if there are any messages in a queue.  This example shows you how to do that.
 
 
 [Top](#toc)<br>
