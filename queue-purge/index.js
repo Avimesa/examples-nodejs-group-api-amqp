@@ -45,7 +45,7 @@ function queueSubscriber(){
                             console.log(err.message);
                         }
                         else {
-                            console.log('purged ${resp.messageCount} messages');
+                            console.log(`purged ${resp.messageCount} messages`);
                         }
                         conn.close();
                     });

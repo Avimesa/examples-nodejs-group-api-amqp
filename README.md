@@ -13,6 +13,7 @@ This project contains simple example of how to interface with the Avimesa Device
 - [3. Usage](#3.-usage)
 - [4. Examples](#4.-examples)
     - [actuate-device](#actuate-device)
+    - [admin-command-rpc](#admin-command-rpc)
     - [message-count](#message-count)
     - [queue-purge](#queue-purge)
     - [queue-read-all](#queue-read-all)
@@ -83,6 +84,25 @@ To actuate a device, we send a JSON command to the `actuation.dx` exchange, and 
 
 
 
+<a id="admin-command-rpc"></a>
+### admin-command-rpc
+
+##### Summary:
+
+The API supports a typical Remote Procedure Call (RPC) like interface for many of its commands.  In general, the logic goes like so:
+
+- Create a temporary queue that the eventual response will be sent to.  Set a queue expiration time of 60 seconds to make sure it's cleaned up.
+- Subscribe to this new queue
+- Publish the command to the `admin.dx` exchange with routing key `in`, setting the `replyTo` option to the new queue name that we just created
+- Process the response that is published to the subscriber and ack the message 
+
+A command with a request ID is sent to the `admin.dx` exchange with a routing key of `in` and the message is routed to the `admin_in_q` queue.  The Avimesa Device Cloud processes the request, and responds to the queue that we specified in the request.
+
+This example shows how one could request to list the Devices that belong to the Group.
+
+
+
+[Top](#toc)<br>
 <a id="message-count"></a>
 ### message-count
 

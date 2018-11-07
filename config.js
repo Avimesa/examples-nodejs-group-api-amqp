@@ -60,11 +60,14 @@ exports.getRmqSettings = function () {
         },
         exchanges : {
             data : 'data.dx',
-            actuation : 'actuation.dx'
+            actuation : 'actuation.dx',
+            admin : 'admin.dx'
         },
         routingKeys : {
             raw : 'raw',
             notification : 'not',
+            admin_in : 'in',
+            admin_out : 'out'
         }
     };
 };
