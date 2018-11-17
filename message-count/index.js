@@ -9,8 +9,8 @@
 
 'use strict';
 
+const api = require('@avimesa/group-api-amqp');
 const config = require('./../config');
-const amqp = require('amqplib/callback_api');
 
 /**
  * message-count
@@ -20,37 +20,17 @@ const amqp = require('amqplib/callback_api');
 function messageCount() {
     console.log("message-count");
 
-    const connParams = config.getConnParams();
     const rmqSettings = config.getRmqSettings();
+    const queue = rmqSettings.queues.raw;
 
-    const queueName = rmqSettings.queues.raw;
-
-    // Connect to the server
-    amqp.connect(connParams, function(err, conn) {
-        if(err){
-            console.log(err);
-        }
-        else{
-            // Use a 'confirm channel' here so we can use a callback
-            conn.createConfirmChannel(function(err, ch) {
-                if (err){
-                    console.log(err);
-                    conn.close();
-                }
-                else {
-                    ch.checkQueue(queueName, function(err, q) {
-                        if(err){
-                            console.log(err.message);
-                        } else {
-                            console.log(`Found queue: ${q.queue}`);
-                            console.log(`Message Count: ${q.messageCount}`);
-                        }
-                        conn.close();
-                    });
-                }
-            });
-        }
-    });
+    api.count(queue, function (err, count) {
+		if(err){
+			console.log("Error");
+		}
+		else {
+			console.log(`Message count: ${count}`);
+		}
+	});
 }
 
 messageCount();

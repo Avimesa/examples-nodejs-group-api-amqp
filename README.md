@@ -160,6 +160,7 @@ This example shows how to create a temporary queue that will get data from the s
 ## 4. Dependencies
 
 ```
+@avimesa/group-api-amqp
 amqplib
 dotenv
 ```

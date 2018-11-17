@@ -10,27 +10,20 @@
 'use strict';
 
 const api = require('@avimesa/group-api-amqp');
-const config = require('./../config');
 
-/**
- * purge-queue example
- *
- * @returns none
- */
-function purgeQueue() {
-	console.log("queue-purge");
+function listDevicesExample() {
+	console.log("list-devices");
 
-	const rmqSettings = config.getRmqSettings();
-	const queue = rmqSettings.queues.raw;
-
-	api.purge(queue, function (err, count) {
+	api.listDevices(function (err, devices) {
 		if (err) {
-			console.log(`Error purging [${queue}]`);
+			console.log("Error");
 		}
 		else {
-			console.log(`Purged [${queue}] - ${count} messages`);
+			for (var i = 0; i < devices.length; i++) {
+				console.log(devices[i]);
+			}
 		}
 	});
 }
 
-purgeQueue();
+listDevicesExample();
