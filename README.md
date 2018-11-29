@@ -12,13 +12,15 @@ This project contains simple example of how to interface with the Avimesa Device
 - [2. Prerequisites](#2.-prerequisites)
 - [3. Usage](#3.-usage)
 - [4. Examples](#4.-examples)
-    - [actuate-device](#actuate-device)
-    - [admin-command-rpc](#admin-command-rpc)
-    - [message-count](#message-count)
-    - [queue-purge](#queue-purge)
-    - [queue-read-all](#queue-read-all)
-    - [queue-subscriber](#queue-subscriber)
-    - [queue-temp-subscriber](#queue-subscriber)
+    - [actuate-device](#4.1-examples)
+    - [list-devices](#4.2-examples)
+    - [list-files](#4.3-examples)
+    - [message-count](#4.4-examples)
+    - [queue-purge](#4.5-examples)
+    - [queue-subscriber](#4.6-examples)
+    - [queue-temp-subscriber](#4.7-examples)
+    - [upload-files](#4.8-examples)
+
 
 <a id="1.-overview"></a>
 ## 1. Overview
@@ -72,7 +74,7 @@ node queue-subscriber/index.js
 ## 4. Examples
 
 
-<a id="actuate-device"></a>
+<a id="4.1-examples"></a>
 ### actuate-device
 
 ##### Summary:
@@ -81,29 +83,35 @@ Device actuation occurs by sending a command to the Device.  Because the device 
 
 To actuate a device, we send a JSON command to the `actuation.dx` exchange, and use a routing key that is the Device's ID (lower case, string based UUID, no hyphens).
 
+This is all done for you by the `actuate` API, where you just pass in a Device ID and a JSON message. 
 
-
-
-<a id="admin-command-rpc"></a>
-### admin-command-rpc
-
-##### Summary:
-
-The API supports a typical Remote Procedure Call (RPC) like interface for many of its commands.  In general, the logic goes like so:
-
-- Create a temporary queue that the eventual response will be sent to.  Set a queue expiration time of 60 seconds to make sure it's cleaned up.
-- Subscribe to this new queue
-- Publish the command to the `admin.dx` exchange with routing key `in`, setting the `replyTo` option to the new queue name that we just created
-- Process the response that is published to the subscriber and ack the message 
-
-A command with a request ID is sent to the `admin.dx` exchange with a routing key of `in` and the message is routed to the `admin_in_q` queue.  The Avimesa Device Cloud processes the request, and responds to the queue that we specified in the request.
-
-This example shows how one could request to list the Devices that belong to the Group.
 
 
 
 [Top](#toc)<br>
-<a id="message-count"></a>
+<a id="4.2-examples"></a>
+### list-devices
+
+##### Summary:
+
+An Avimesa Group contains Devices.  This example shows how to query for a list of devices.
+
+
+
+[Top](#toc)<br>
+<a id="4.3-examples"></a>
+### list-files
+
+##### Summary:
+
+Each Device in the Avimesa Device Cloud has its own file system.  This will contain things like the device script, device config, DFU files, and any temporary files used by te script engine.
+
+This example shows listing a devices files.
+
+
+
+[Top](#toc)<br>
+<a id="4.4-examples"></a>
 ### message-count
 
 ##### Summary:
@@ -111,8 +119,11 @@ This example shows how one could request to list the Devices that belong to the 
 Sometimes you want to see if there are any messages in a queue.  This example shows you how to do that.
 
 
+
+
+
 [Top](#toc)<br>
-<a id="queue-purge"></a>
+<a id="4.5-examples"></a>
 ### queue-purge
 
 ##### Summary:
@@ -123,30 +134,23 @@ This example shows how to purge a queue.
 
 
 
-[Top](#toc)<br>
-<a id="queue-read-all"></a>
-### queue-read-all
-
-##### Summary:
-
-The Avimesa Device Cloud comes with pre-configured queues such as `raw_q`, `not_q`, `admin_out_q` and `sys_log_q`.  These are required to serve as a (temporary) data store for messages and events.  Each queue is setup as exclusive, with the intention of a **single main consumer** that offloads the messages from the broker, into a database for permanent storage, and acknowledges the message to remove it from the queue.
-
-This example shows a simple synchronous use case of the primary use of these queues, which is to have a single consumer offloading a queue exclusively.
 
 
 
 [Top](#toc)<br>
-<a id="queue-subscriber"></a>
+<a id="4.6-examples"></a>
 ### queue-subscriber
 
 ##### Summary:
 
-This is the same as the `queue-read-all` example, but asynchronous in nature and using as subscriber instead of a reading the messages from the queue directly. 
+This example consumes data from a queue.  When using the `consume` API, it's assumed that the user of this API is in charge of moving data to permanent storage.  Upon first connection, all pending messages are available.  This allows an application to go offline and not worry about data loss.
+
+
 
 
 
 [Top](#toc)<br>
-<a id="queue-temp-subscriber"></a>
+<a id="4.7-examples"></a>
 ### queue-temp-subscriber
 
 ##### Summary:
@@ -157,6 +161,21 @@ This example shows how to create a temporary queue that will get data from the s
 
 
 
+
+
+[Top](#toc)<br>
+<a id="4.8-examples"></a>
+### upload-files
+
+##### Summary:
+
+This example shows how one can upload a Device Driver Script and Device Configuration. 
+
+
+
+
+
+[Top](#toc)<br>
 ## 4. Dependencies
 
 ```
