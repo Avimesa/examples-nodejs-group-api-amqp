@@ -13,13 +13,13 @@ This project contains simple example of how to interface with the Avimesa Device
 - [3. Usage](#3.-usage)
 - [4. Examples](#4.-examples)
     - [actuate-device](#4.1-examples)
-    - [list-devices](#4.2-examples)
-    - [list-files](#4.3-examples)
-    - [message-count](#4.4-examples)
-    - [queue-purge](#4.5-examples)
-    - [queue-subscriber](#4.6-examples)
-    - [queue-temp-subscriber](#4.7-examples)
-    - [upload-files](#4.8-examples)
+    - [list-devices](#4.3-examples)
+    - [list-files](#4.4-examples)
+    - [message-count](#4.5-examples)
+    - [queue-purge](#4.6-examples)
+    - [queue-subscriber](#4.7-examples)
+    - [queue-temp-subscriber](#4.8-examples)
+    - [upload-files](#4.9-examples)
 
 
 <a id="1.-overview"></a>
@@ -87,9 +87,24 @@ This is all done for you by the `actuate` API, where you just pass in a Device I
 
 
 
-
 [Top](#toc)<br>
 <a id="4.2-examples"></a>
+### add-device
+
+##### Summary:
+
+This example shows how to add a Device to the Device Cloud.  The Device ID must be a 32 character string using a-f or 0-9 (i.e. base16 values for a UUID...).  It also must be unique in the Avimesa Device Cloud instance, so one could use a UUID generator to make the Device ID.
+
+In response to a successful Device addition, you get a 32 character string (base16, UUID) authentication key.  
+
+The combination of the Device ID and Authentication key can then be used by an Avimesa Device. 
+
+
+
+
+
+[Top](#toc)<br>
+<a id="4.3-examples"></a>
 ### list-devices
 
 ##### Summary:
@@ -99,7 +114,7 @@ An Avimesa Group contains Devices.  This example shows how to query for a list o
 
 
 [Top](#toc)<br>
-<a id="4.3-examples"></a>
+<a id="4.4-examples"></a>
 ### list-files
 
 ##### Summary:
@@ -111,7 +126,7 @@ This example shows listing a devices files.
 
 
 [Top](#toc)<br>
-<a id="4.4-examples"></a>
+<a id="4.5-examples"></a>
 ### message-count
 
 ##### Summary:
@@ -123,7 +138,7 @@ Sometimes you want to see if there are any messages in a queue.  This example sh
 
 
 [Top](#toc)<br>
-<a id="4.5-examples"></a>
+<a id="4.6-examples"></a>
 ### queue-purge
 
 ##### Summary:
@@ -138,7 +153,7 @@ This example shows how to purge a queue.
 
 
 [Top](#toc)<br>
-<a id="4.6-examples"></a>
+<a id="4.7-examples"></a>
 ### queue-subscriber
 
 ##### Summary:
@@ -150,7 +165,7 @@ This example consumes data from a queue.  When using the `consume` API, it's ass
 
 
 [Top](#toc)<br>
-<a id="4.7-examples"></a>
+<a id="4.8-examples"></a>
 ### queue-temp-subscriber
 
 ##### Summary:
@@ -164,7 +179,7 @@ This example shows how to create a temporary queue that will get data from the s
 
 
 [Top](#toc)<br>
-<a id="4.8-examples"></a>
+<a id="4.9-examples"></a>
 ### upload-files
 
 ##### Summary:
