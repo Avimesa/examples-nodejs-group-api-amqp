@@ -1,6 +1,6 @@
 {
-  "name": "examples-nodejs-group-api-amqp",
-  "version": "1.0.0",
+  "name": "@avimesa/examples-group-api-amqp",
+  "version": "0.0.0",
   "description": "Group API examples using AMQP (0-9-1) and Node.js",
   "main": "index.js",
   "scripts": {
@@ -10,15 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/Avimesa/examples-nodejs-group-api-amqp.git"
   },
-  "author": "Avimesa",
-  "license": "ISC",
+  "author": "travimesa",
+  "license": "SEE LICENSE IN LICENSE",
   "bugs": {
     "url": "https://github.com/Avimesa/examples-nodejs-group-api-amqp/issues"
   },
   "homepage": "https://github.com/Avimesa/examples-nodejs-group-api-amqp#readme",
   "dependencies": {
-    "@avimesa/group-api-amqp": "0.0.7",
-    "amqplib": "^0.5.2",
-    "dotenv": "^6.1.0"
+    "@avimesa/group-api-amqp": "0.0.8",
+    "amqplib": "^0.5.3",
+    "dotenv": "^6.2.0"
   }
 }
