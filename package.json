@@ -1,6 +1,6 @@
 {
   "name": "@avimesa/examples-group-api-amqp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Group API examples using AMQP (0-9-1) and Node.js",
   "main": "index.js",
   "scripts": {
