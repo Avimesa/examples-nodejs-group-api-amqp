@@ -51,7 +51,7 @@ Update the credentials in the .env file in the root of the project:
 RMQ_HOSTNAME=rmqserv001.avimesa.com
 
 # RMQ Server Port
-RMQ_PORT=5672
+RMQ_PORT=5671
 
 # RMQ Group ID / Vhost
 RMQ_GROUP_ID= *<TODO>*
