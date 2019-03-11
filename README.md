@@ -20,6 +20,7 @@ This project contains simple example of how to interface with the Avimesa Device
     - [queue-subscriber](#4.7-examples)
     - [queue-temp-subscriber](#4.8-examples)
     - [upload-files](#4.9-examples)
+    - [set-connection-params](#4.10-examples)
 
 
 <a id="1.-overview"></a>
@@ -183,6 +184,15 @@ This example shows how to create a temporary queue that will get data from the s
 
 This example shows how one can upload a Device Driver Script and Device Configuration. 
 
+
+
+[Top](#toc)<br>
+<a id="4.10-examples"></a>
+### set-connection-params
+
+##### Summary:
+
+This example shows how one can call a function to set connection params instead of using the .env file 
 
 
 
