@@ -7,6 +7,6 @@
  * in the Avimesa Open License:  http://avimesa.com/openlicense.txt
  */
 
-console.log("Please update the .env file");
+console.log("Please update the API Key and API Password in the example");
 console.log("To run an example, follow this format in the terminal:");
 console.log("  node queue-subscriber/index.js");

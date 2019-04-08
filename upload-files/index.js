@@ -16,6 +16,18 @@ const configPath = path.join(__dirname, '..', 'files', 'config.json');
 function uploadFile() {
 	console.log("upload-file");
 
+	let apiKey = '';
+	let apiPassword = '';
+
+	if(!apiKey || !apiPassword){
+		throw 'Please update the API Credentials above!'
+	}
+
+	api.setConnParams({
+		apiKey: apiKey,
+		apiPassword: apiPassword,
+	});
+
 	let scriptBuf = fs.readFileSync(scriptPath);
 	api.uploadScript(devId, scriptBuf, function (err, msg) {
 		if (err) {

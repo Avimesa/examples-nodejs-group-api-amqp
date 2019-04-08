@@ -5,6 +5,18 @@ const api = require('@avimesa/group-api-amqp');
 function listFilesExample() {
 	console.log("list-files");
 
+	let apiKey = '';
+	let apiPassword = '';
+
+	if(!apiKey || !apiPassword){
+		throw 'Please update the API Credentials above!'
+	}
+
+	api.setConnParams({
+		apiKey: apiKey,
+		apiPassword: apiPassword,
+	});
+
 	const devId = "00000000000000000000000000000000";
 
 	api.listFiles(devId, function (err, files) {

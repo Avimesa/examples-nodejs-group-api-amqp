@@ -6,7 +6,7 @@ function purgeQueue() {
 	console.log("queue-purge");
 
 	const rmqSettings = api.getRmqSettings();
-	const queue = rmqSettings.queues.raw;
+	const queue = '390e643448084f520000000000000001_q';//rmqSettings.queues.raw;
 
 	api.purge(queue, function (err, count) {
 		if (err) {

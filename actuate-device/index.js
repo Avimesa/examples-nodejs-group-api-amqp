@@ -5,6 +5,18 @@ const api = require('@avimesa/group-api-amqp');
 function actuateDevice() {
     console.log("actuate-device");
 
+	let apiKey = '';
+	let apiPassword = '';
+
+	if(!apiKey || !apiPassword){
+		throw 'Please update the API Credentials above!'
+	}
+
+	api.setConnParams({
+		apiKey: apiKey,
+		apiPassword: apiPassword,
+	});
+
     const deviceId = "20010db800000000a28f7ffffe3558e1";
     console.log(`Using Device ID: ${deviceId}`);
 
