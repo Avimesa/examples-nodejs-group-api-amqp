@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Avimesa/examples-nodejs-group-api-amqp#readme",
   "dependencies": {
-    "@avimesa/group-api-amqp": "0.0.14",
+    "@avimesa/group-api-amqp": "0.0.15",
     "amqplib": "^0.5.3",
     "dotenv": "^6.2.0"
   }
