@@ -5,6 +5,13 @@ const api = require('@avimesa/group-api-amqp');
 function queueSubscriber(){
     console.log("queue-subscriber");
 
+	let apiKey = '';
+	let apiPassword = '';
+
+	if(!apiKey || !apiPassword){
+		throw 'Please update the API Credentials above!'
+	}
+
     const rmqSettings = api.getRmqSettings();
 
     var queue = rmqSettings.queues.raw;

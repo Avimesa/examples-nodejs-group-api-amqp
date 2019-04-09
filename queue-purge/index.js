@@ -5,8 +5,15 @@ const api = require('@avimesa/group-api-amqp');
 function purgeQueue() {
 	console.log("queue-purge");
 
+	let apiKey = '';
+	let apiPassword = '';
+
+	if(!apiKey || !apiPassword){
+		throw 'Please update the API Credentials above!'
+	}
+
 	const rmqSettings = api.getRmqSettings();
-	const queue = '390e643448084f520000000000000001_q';//rmqSettings.queues.raw;
+	const queue = rmqSettings.queues.raw;
 
 	api.purge(queue, function (err, count) {
 		if (err) {
