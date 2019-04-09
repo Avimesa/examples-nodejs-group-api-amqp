@@ -12,6 +12,11 @@ function purgeQueue() {
 		throw 'Please update the API Credentials above!'
 	}
 
+	api.setConnParams({
+		apiKey: apiKey,
+		apiPassword: apiPassword,
+	});
+
 	const rmqSettings = api.getRmqSettings();
 	const queue = rmqSettings.queues.raw;
 
