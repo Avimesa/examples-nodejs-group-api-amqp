@@ -26,6 +26,7 @@ function uploadFile() {
 	api.setConnParams({
 		apiKey: apiKey,
 		apiPassword: apiPassword,
+		hostname: 'rmqserv001.avimesa.com'
 	});
 
 	let scriptBuf = fs.readFileSync(scriptPath);

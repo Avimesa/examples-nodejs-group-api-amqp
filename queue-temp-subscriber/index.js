@@ -15,6 +15,7 @@ function queueTemporarySubscriber(){
 	api.setConnParams({
 		apiKey: apiKey,
 		apiPassword: apiPassword,
+		hostname: 'rmqserv001.avimesa.com'
 	});
 
     const rmqSettings = api.getRmqSettings();
