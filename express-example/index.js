@@ -27,19 +27,18 @@ let queue = rmqSettings.queues.raw;
 avmsa_api.purge(queue, function (err, count) {
 	if (err) {
 		console.log(`Error purging [${queue}]`);
-	}
-	else {
+	} else {
 		console.log(`Purged [${queue}] - ${count} messages`);
 	}
 });
 
 avmsa_api.consume(queue, function (err, msg, ack) {
-    if(err){
+	if(err) {
 		console.log("Error");
-    }
-    else {
-        // Ack this message, we got it
-        ack(true);
+	}
+	else {
+		// Ack this message, we got it
+		ack(true);
 		current_reading = msg.dev.chans[0].ch_data[0];
-    }
+	}
 });
