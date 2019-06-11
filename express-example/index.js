@@ -35,8 +35,7 @@ avmsa_api.purge(queue, function (err, count) {
 avmsa_api.consume(queue, function (err, msg, ack) {
 	if(err) {
 		console.log("Error");
-	}
-	else {
+	} else {
 		// Ack this message, we got it
 		ack(true);
 		current_reading = msg.dev.chans[0].ch_data[0];
