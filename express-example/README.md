@@ -1,6 +1,7 @@
+# Example Temperature Application Using Node and Express
 Updated June 14, 2019
 
-##Introduction
+## Introduction
 
 
 This tutorial will walk you through the steps of getting temperature data from an Avimesa 1000 with a 4-20 mA temperature sensor, then setting up a simple chart to view the live date. For this tutorial, we'll use our local machine to run the app, but you're free to use any web server with Node.js. When we're done you should end up with a chart similar to the one below.
@@ -31,7 +32,7 @@ We also recommend checking out our video tutorials at: <a href="https://avimesa.
 Note: When connecting the 4-20 mA sensor to the Avimesa 1000, the wiring order for each channel from left to right should be BLACK - BROWN - BLUE. 
 
 
-###Step 1 - Configuring the Avimesa 1000
+### Step 1 - Configuring the Avimesa 1000
 
 First, <a href="https://avimesa.com/demos/line-chart/temperature-app.zip">click here</a> to download the project files for this demo if you haven't already. Unzip the file and place the folder in the root directory for localhost on your machine. On MacOS it's usually the `Sites` folder, but it can be called anything depending on how it was set up. If you're unsure if your machine has a localhost you can do a web search for `setting up localhost`. If you're using MacOS, <a href="https://websitebeaver.com/set-up-localhost-on-macos-high-sierra-apache-mysql-and-php-7-with-sslhttps">this article is pretty thorough</a>. No need to enable PHP and MySQL for this tutorial. Simply starting Apache and enabling your `Sites` folder is enough. 
 
@@ -47,15 +48,15 @@ Next click `Upload Config` and upload the `config.json` script from the same fol
 
 Your Avimesa 1000 is now configured to use the ProSense XTP25N temperature sensor.
 
-###Step 2 - Node, Express, and Avimesa Group API
+### Step 2 - Node, Express, and Avimesa Group API
 
-####Node.js
+#### Node.js
 
 If you don't already have Node.js installed, please visit <a href="https://nodejs.org/en/" target="_blank">https://nodejs.org/en/</a> for instructions on installing Node.js
 
 To check if you have Node.js installed open a Terminal window and type `node -v` and hit `Enter`. If Node is installed you should see a version number like `v10.15.3` returned.
 
-####Express.js
+#### Express.js
 
 Once you have Node running we can now install <a href="https://expressjs.com/" rel="noopener" target="_blank">Express.js</a>. Express is a Node.js framework that makes it easier to create web applications.
 
@@ -97,7 +98,7 @@ $ npm install cors
 ```
 CORS gives permission to a web application to access resources from another location. For example, we'll serve our Node application from http://localhost:8080 using Express, then access it from http://localhost. More info can be found at: https://www.codecademy.com/articles/what-is-cors
 
-####Avimesa Group API
+#### Avimesa Group API
 
 Now, we can install the Avimesa Group API files. Type the following command and hit RETURN:
 
@@ -106,7 +107,7 @@ npm install @avimesa/group-api-amqp
 ```
 
 
-###Step 3 - The Node.js application
+### Step 3 - The Node.js application
 
 Grab the app.js sample file from your project files and place it in the `temperature-app` directory. Now we'll open the file in a text editor and insert your API key and password. To find your API key and password, go to https://app.avimesa.com and in the upper-right corner click on `Account` then `Settings` in the drop-down menu. You'll see your API key and password listed under the Subscription section. Copy your API key.
 
@@ -156,7 +157,7 @@ You should now see data in JSON format which should look something like this:
 ```
 
 
-###Step 4 - Charting the data
+### Step 4 - Charting the data
 
 Now that we have data flowing we can plug it into our the Javascript app. In this example we'll use a dynamic line chart from amCharts which automatically updates at a set interval.
 
