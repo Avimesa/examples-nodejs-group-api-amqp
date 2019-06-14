@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<!-- Styles -->
+<style>
+body { background-color: #30303d; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+</style>
+
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+
+// Themes begin
+am4core.useTheme(am4themes_dark);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+chart.hiddenState.properties.opacity = 0;
+
+// var count = 0;
+// var newCount = count++;
+
+// Set up data source
+chart.dataSource.url = "http://localhost:8080";
+chart.dataSource.reloadFrequency = 1500;
+chart.dataSource.incremental = true;
+
+
+
+// Create axes
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.renderer.grid.template.location = 0;
+dateAxis.renderer.minGridDistance = 30;
+dateAxis.renderer.labels.template.location = 0.0001;
+// dateAxis.startLocation = 0.5;
+// dateAxis.endLocation = 0.5;
+dateAxis.dateFormats.setKey("second", "ss");
+dateAxis.periodChangeDateFormats.setKey("second", "[bold]h:mm a");
+dateAxis.periodChangeDateFormats.setKey("minute", "[bold]h:mm a");
+dateAxis.periodChangeDateFormats.setKey("hour", "[bold]h:mm a");
+dateAxis.renderer.inside = true;
+dateAxis.renderer.axisFills.template.disabled = true;
+dateAxis.renderer.ticks.template.disabled = true;
+dateAxis.dataFields.date = "date";
+
+
+
+// Create value axis
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.interpolationDuration = 500;
+valueAxis.rangeChangeDuration = 500;
+valueAxis.renderer.inside = true;
+valueAxis.renderer.minLabelPosition = 0.05;
+valueAxis.renderer.maxLabelPosition = 0.95;
+valueAxis.renderer.axisFills.template.disabled = true;
+valueAxis.renderer.ticks.template.disabled = true;
+
+
+// Create series
+var series1 = chart.series.push(new am4charts.LineSeries());
+series1.dataFields.valueY = "val";
+series1.dataFields.dateX = "date";
+series1.name = "Temperature";
+series1.strokeWidth = 2;
+series1.tooltipText = "{valueY}";
+
+
+// Change color if above range.value
+// var range = valueAxis.createSeriesRange(series1);
+// range.value = 75;
+// range.endValue = 1000;
+// range.contents.stroke = am4core.color("#FF0000");
+// range.contents.fill = range.contents.stroke;
+// range.contents.fillOpacity = 0.3;
+// range.label.inside = true;
+// range.label.text = "Danger Zone";
+// range.label.fill = range2.grid.stroke;
+// range.label.align = "right";
+// range.label.verticalCenter = "bottom";
+
+
+// Add bullets
+series1.bullets.push(new am4charts.CircleBullet());
+
+// Add legend
+chart.legend = new am4charts.Legend();
+
+series1.tooltip.pointerOrientation = "vertical";
+
+chart.cursor = new am4charts.XYCursor();
+
+//chart.scrollbarY = new am4core.Scrollbar();
+chart.scrollbarX = new am4core.Scrollbar();
+
+
+
+// all the below is optional, makes some fancy effects
+// gradient fill of the series
+series1.fillOpacity = 1;
+var gradient = new am4core.LinearGradient();
+gradient.addColor(chart.colors.getIndex(0), 0.2);
+gradient.addColor(chart.colors.getIndex(0), 0);
+series1.fill = gradient;
+
+// this makes date axis labels to fade out
+dateAxis.renderer.labels.template.adapter.add("fillOpacity", function (fillOpacity, target) {
+    var dataItem = target.dataItem;
+    return dataItem.position;
+})
+
+// need to set this, otherwise fillOpacity is not changed and not set
+dateAxis.events.on("validated", function () {
+    am4core.iter.each(dateAxis.renderer.labels.iterator(), function (label) {
+        label.fillOpacity = label.fillOpacity;
+    })
+})
+
+// this makes date axis labels which are at equal minutes to be rotated
+dateAxis.renderer.labels.template.adapter.add("rotation", function (rotation, target) {
+    var dataItem = target.dataItem;
+    if (dataItem.date && dataItem.date.getTime() == am4core.time.round(new Date(dataItem.date.getTime()), "minute").getTime()) {
+        target.verticalCenter = "middle";
+        target.horizontalCenter = "left";
+        return -90;
+    }
+    else {
+        target.verticalCenter = "bottom";
+        target.horizontalCenter = "middle";
+        return 0;
+    }
+})
+
+// Solid bullet at the front of the line
+// var bullet = series1.createChild(am4charts.CircleBullet);
+// bullet.circle.radius = 5;
+// bullet.fillOpacity = 1;
+// bullet.fill = chart.colors.getIndex(0);
+// bullet.isMeasured = false;
+// 
+// series1.events.on("validated", function() {
+//     bullet.moveTo(series.dataItems.last.point);
+//     bullet.validatePosition();
+// });
+
+}); // end am4core.ready()
+</script>
+
+</head>
+<body>
+<!-- HTML -->
+<div id="chartdiv"></div>
+</body>
+</html>
