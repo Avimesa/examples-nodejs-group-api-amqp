@@ -15,7 +15,7 @@ function actuateDevice() {
 	api.setConnParams({
 		apiKey: apiKey,
 		apiPassword: apiPassword,
-		hostname: 'rmqserv001.avimesa.com'
+		hostname: 'queues.avimesacorp.net'
 	});
 
     const deviceId = "20010db800000000a28f7ffffe3558e1";
