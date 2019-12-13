@@ -15,7 +15,7 @@ function listFilesExample() {
 	api.setConnParams({
 		apiKey: apiKey,
 		apiPassword: apiPassword,
-		hostname: 'rmqserv001.avimesa.com'
+		hostname: 'queues.avimesacorp.net'
 	});
 
 	const devId = "00000000000000000000000000000000";
